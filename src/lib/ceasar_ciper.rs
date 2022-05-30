@@ -26,8 +26,7 @@ pub fn ceasar(inp: &str, inshift: usize, back: bool) -> String {
     output
 }
 
-pub fn ceasar_bin(binary: Vec<u8>, shift: u8, back: bool) -> Vec<u8> {
-	let mut input: Vec<u8> = binary;
+pub fn ceasar_bin(mut input: Vec<u8>, shift: u8, back: bool) -> Vec<u8> {
 	if !back {
 		for i in 0..input.len() {
 			input[i] = input[i].wrapping_add(shift);
