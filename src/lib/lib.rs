@@ -1,7 +1,7 @@
 mod invrs_factorial;
 mod ceasar_ciper;
 mod fibonacci_sequence;
-mod xor_encrpytion
+mod xor_encrpytion;
 pub use invrs_factorial::invrs_fact;
 pub use ceasar_ciper::ceasar;
 pub use ceasar_ciper::ceasar_bin;

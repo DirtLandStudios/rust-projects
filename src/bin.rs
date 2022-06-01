@@ -1,17 +1,14 @@
 
 fn main() {
-	let mut n: usize = 0;
-	for i in 1..=1000 {
-		println!("{}", i);
-		n += usize::pow(i, i.try_into().unwrap());
+
+}
+
+struct Board([u8; (9*9)]);
+impl Board {
+	pub fn get(self, x: u8, y: u8) -> u8 {
+		let n = (y * 9) + x;
 	}
-	println!("{}", n);
-/* 	let n = fibonacci_seq(40000000);
-	let mut p: Vec<u32> = Vec::new();
-	for i in 0..n.len() {
-		if n[i] % 2 == 0 {
-			p.push(n[i]);
-		}
+	pub fn set(&self, x: u8, y: u8, set: u8) {
+		let n = (y * 9) + x;
 	}
-	println!("{:?}", p); */
 }
