@@ -15,11 +15,34 @@ struct Game {
 }
 
 impl Game {
-	//TODO: implement import
-	pub fn new() -> Game {
+	pub fn new(import_board: [u8; AREA]) -> Game {
+		//check that board is good
+		let mut iter_board = import_board.iter();
+		match iter_board.find(|&x| x >= &10) {
+			Some(_n) => {
+				panic!("NOT REAL BOARD")
+			},
+			None => {
+
+			}
+
+		}
+		let mut is_fixed: [bool; AREA] = [false; AREA];
+		is_fixed[iter_board.position(|&x| x != 0).unwrap()] = true; //0 is false, all other numbers are true
+		//loop to get all other fixed
+		loop {
+			match iter_board.next() {
+				None => {
+					break;
+				},
+				Some(n) => {
+					is_fixed[*n as usize] = true;
+				}
+			}
+		}
 		Game {
-			board : [0; AREA],
-			fixed: [false; AREA]
+			board : import_board,
+			fixed: is_fixed
 		}
 	}
 	///retrive value at box
@@ -77,8 +100,8 @@ impl Game {
 	pub fn missing(&self, set: [u8; WIDTH]) -> Vec<u8>{
 		let mut missing: Vec<u8> = Vec::new();
 		for n in 1..=9 {
-			match set.iter().find(|&x| x == n) {
-				Some(i) => {
+			match set.iter().find(|&x| x == &n) {
+				Some(_i) => {
 					//do nothing
 				},
 				None => {
