@@ -7,7 +7,7 @@ fn main() {
 type Position = (u8, u8);
 
 const WIDTH: usize = 9;
-const AREA: usize = (WIDTH * WIDTH) as usize;
+const AREA: usize = WIDTH * WIDTH;
 
 struct Game {
 	board : [u8; AREA],
@@ -20,12 +20,11 @@ impl Game {
 		let mut iter_board = import_board.iter();
 		match iter_board.find(|&x| x >= &10) {
 			Some(_n) => {
-				panic!("NOT REAL BOARD")
+				panic!("NOT REAL BOARD");
 			},
 			None => {
-
+				//good board
 			}
-
 		}
 		let mut is_fixed: [bool; AREA] = [false; AREA];
 		is_fixed[iter_board.position(|&x| x != 0).unwrap()] = true; //0 is false, all other numbers are true
@@ -83,8 +82,8 @@ impl Game {
 		}
 		sum
 	}
-	//TODO: don't use position, make get square func and use square number instead
-	///return square WIP
+
+	///do not call function with normal coor, use square coor
 	pub fn check_square(&self, (x, y): Position) -> [u8; 9] {
 		let mut sum: [u8; 9] = [0; 9];
 		let mut n = 0;
@@ -96,6 +95,13 @@ impl Game {
 		}
 		sum
 	}
+	//untested, I think it'll work
+	pub fn get_square_coor((x, y): Position) -> Position {
+		let square_x = x + (1 - x % 3);
+		let square_y = y + (1 - y % 3);
+		(square_x, square_y)
+	}
+
 	///return missing values
 	pub fn missing(&self, set: [u8; WIDTH]) -> Vec<u8>{
 		let mut missing: Vec<u8> = Vec::new();
