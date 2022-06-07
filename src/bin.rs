@@ -96,8 +96,10 @@ impl Game {
 		sum
 	}
 	//untested, I think it'll work
+	///gives coor of middle of current box
 	pub fn get_square_coor((x, y): Position) -> Position {
-		let square_x = x + (1 - x % 3);
+		//x + the difference to the middle of the box (where %3==1)
+		let square_x = x + (1 - x % 3); 
 		let square_y = y + (1 - y % 3);
 		(square_x, square_y)
 	}
